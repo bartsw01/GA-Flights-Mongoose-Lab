@@ -5,8 +5,9 @@ const mongoose = require('mongoose');
  const flightSchema = new Schema({
     airline: String,
     flightNo: Number,   // enum 'AUS', 'DFW', 'DEN', 'LAX' & 'SAN'
+    airport: [String],
     departs: Date,   // required between 10 and 9999
-    airport: [String]
+    onTime: Boolean
 });
 
  // Compile the schema into a model and export it
