@@ -22,8 +22,7 @@ const newFlight = (req, res) => {
       return res.render('flights/new');
     else {
       console.log(flight);
-    // for now, redirect right back to new.ejs
-    res.redirect('/flights/new');
+      res.redirect('/flights');
     }
   });
   }
