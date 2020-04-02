@@ -11,4 +11,4 @@ const mongoose = require('mongoose');
 });
 
  // Compile the schema into a model and export it
- module.exports = mongoose.model('Movie', movieSchema);
+ module.exports = mongoose.model('Flight', flightSchema);
