@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title><%= flight.flightNo %></title>
+</head>
+<body>
+  <main>
+    <h1><%= flight.flightNo %></h1>
+<section>
+  <div>Flight Number: </div>
+  <div><%= flight.flightNo %></div>
+  <div>Airline: </div>
+  <div><%= flight.airline %></div>
+  <div>Departs: </div>
+  <div><%= flight.departs %></div>
+  <div>Airport: </div>
+  <div><%= flight.airport %></div>
+  <div>Destinations: </div>
+  <div><%= flight.destinations.join(', ') %></div>
+</section>
+
+<br><br><h2>Destinations</h2>
+<form method="POST"
+  action="/flights/<%= flight._id %>/destinations">
+  <label>Destination:</label>
+  <select name="airport">
+    <option value="AUS">AUS</option>
+    <option value="DFW">DFW</option>
+    <option value="DEN" selected>DEN</option>
+    <option value="LAX">LAX</option>
+    <option value="SAN">SAN</option>
+  </select>
+  <label>Arrival:</label>
+  <input type="date" name="arrives">
+  <input type="submit" value="Add Destination">
+</form>
+
+<% if (flight.destinations.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Destination</th>
+        <th>Arrival Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flight.destinations.forEach(function(r) { %>
+        <tr>
+          <td><%= r.airport %></td>
+          <td><%= r.arrives %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Destinations Yet</h5>
+<% } %>
+
+
+</main>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <input type="datetime-local" name="arrives"> -->

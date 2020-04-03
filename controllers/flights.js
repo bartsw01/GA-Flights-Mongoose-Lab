@@ -1,40 +1,42 @@
+
 const Flight = require('../models/flight');
 
 const newFlight = (req, res) => {
     res.render('flights/new');
+    
+
   }
 
-  
-
   const create = (req, res) => {
-    console.log(req.body);
-    // convert onTime checkbox of nothing or "on" to boolean
-    //req.body.onTime = !!req.body.onTime;
-    // remove whitespace next to commas
-    //req.body.cast = req.body.cast.replace(/\s*, \s*/g, ',');
-    // split if it's not an empty string
-    //if (req.body.cast) req.body.cast = req.body.cast.split(',');
-    
+      console.log(req.body);
     const flight = new Flight(req.body);
     flight.save(function(err) {
     // one way to handle errors
-    if (err) 
-      return res.render('flights/new');
-    else {
+    if (err) return res.render('flights/new');
+    
       console.log(flight);
       res.redirect('/flights');
-    }
+    
   });
   }
 
   const index = (req, res) => {
-    Flight.find({}, (err, flights) =>{
+    Flight.find({}, (err, flights) => {
         res.render('flights/index', {flights });
     });
 }
 
+const show = (req, res) => {
+  Flight.findById(req.params.id, (err, flight) => {
+    res.render('flights/show', {title: 'Flight Detail', flight});
+    
+  })
+}
+
+
   module.exports = {
-    index: index,
     new: newFlight,
-    create 
+    create,
+    index,
+    show
 }
