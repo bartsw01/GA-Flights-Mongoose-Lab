@@ -18,8 +18,14 @@
   <div><%= flight.airport %></div>
   <div>Destinations: </div>
   <div><%= flight.destinations.join(', ') %></div>
+  <div>Tickets Available:</div>
+  <div><%- tickets.map(p =>
+    `<div>Seat: ${p.seat} Price: $${p.price}</div>`
+    ).join('') %>
+</div>
 </section>
-
+<br><br><br>
+<div class="ticket-button"><a href="/flights/<%= flight._id %>/tickets/new" <%- title === 'ADD TICKETS' ? 'class="active"' : '' %>>ADD TICKET</a></div>
 <br><br><h2>Destinations</h2>
 <form method="POST"
   action="/flights/<%= flight._id %>/destinations">
