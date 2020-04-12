@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 
 const ticketSchema = new Schema(
   {
-    seat: {type: String, match: /[A-F][1-9]\d?/},
-    price: Number, min: 0,
-    flight: [{Schema.Types.ObjectId,  ref: "Flight"}],
+    seat: {type: String, match: /[A-F][1-9]\d?/, required: true},
+
+    price: {Number, min: 0, required: true},
+
+    flight: {type: Schema.Types.ObjectId,  ref: "Flight"},
   },
   {
     timestamps: true,
